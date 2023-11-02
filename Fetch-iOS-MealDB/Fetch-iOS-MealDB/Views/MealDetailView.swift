@@ -19,8 +19,25 @@ struct MealDetailView: View {
                         .font(.title)
                     Text("Instructions: \(meal.strInstructions)")
                         .padding()
-                    
-                    // Displaying the ingredients if they exist
+                    // Display Meal Thumb
+                    if let mealThumbURL = URL(string: meal.strMealThumb) {
+                        AsyncImage(url: mealThumbURL) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 200)
+                            case .failure(let error):
+                                Text("Failed to load image: \(error.localizedDescription)")
+                            case .empty:
+                                Text("Waiting for an image")
+                            @unknown default:
+                                Text("Unknown state")
+                            }
+                        }
+                    }
+                    // Display Ingredients
                     if !meal.ingredients.isEmpty {
                         Text("Ingredients:")
                             .font(.headline)

@@ -32,23 +32,19 @@ struct MealDetails: Codable {
     let strMeal: String
     let strInstructions: String
     let strMealThumb: String
-    var ingredients: [Ingredient] // Array of ingredients
+    var ingredients: [Ingredient] = []
 
     struct Ingredient: Codable {
         let name: String
         let measurement: String
     }
 
-    // Enum to specify the keys used in decoding
     private enum CodingKeys: String, CodingKey {
         case idMeal, strMeal, strInstructions, strMealThumb
     }
 
-    // Custom initializer to dynamically parse the ingredients
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        // Decoding static properties
         idMeal = try container.decode(String.self, forKey: .idMeal)
         strMeal = try container.decode(String.self, forKey: .strMeal)
         strInstructions = try container.decode(String.self, forKey: .strInstructions)
@@ -71,6 +67,5 @@ struct MealDetails: Codable {
                 }
             }
         }
-        self.ingredients = ingredients
     }
 }
