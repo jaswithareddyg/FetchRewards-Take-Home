@@ -12,16 +12,11 @@ class MealListViewModel: ObservableObject {
     }
 
     func fetchDessertMeals() {
-        MealService.fetchDessertMeals { [weak self] result in
-            switch result {
-            case .success(let response):
-                DispatchQueue.main.async {
-                    self?.meals = response.meals.sorted(by: { $0.strMeal < $1.strMeal })
-                }
-            case .failure(let error):
-                // Handle error
-                print("Error fetching dessert meals: \(error)")
+        cancellable = MealService.fetchDessertMeals()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in }) { [weak self] response in
+                self?.meals = response.meals.sorted(by: { $0.strMeal < $1.strMeal })
             }
-        }
     }
 }
+
