@@ -1,10 +1,3 @@
-//
-//  SearchBar.swift
-//  Fetch-iOS-MealDB
-//
-//  Created by Jaswitha Reddy G on 11/1/23.
-//
-
 import SwiftUI
 
 struct SearchBar: View {

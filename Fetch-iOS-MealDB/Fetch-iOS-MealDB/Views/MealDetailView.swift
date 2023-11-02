@@ -1,89 +1,72 @@
-//
-//  MealDetailView.swift
-//  Fetch-iOS-MealDB
-//
-//  Created by Jaswitha Reddy G on 11/1/23.
-//
-
 import SwiftUI
 
 struct MealDetailView: View {
-    let mealID: String
-    @State private var mealDetails: MealDetails?
-
-    var body: some View {
-        ScrollView {
-            VStack {
-                if let meal = mealDetails {
-                    Text(meal.strMeal)
-                        .font(.title)
-                    Text("Instructions: \(meal.strInstructions)")
-                        .padding()
-                    // Display Meal Thumb
-                    if let mealThumbURL = URL(string: meal.strMealThumb) {
-                        AsyncImage(url: mealThumbURL) { phase in
-                            switch phase {
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 200)
-                            case .failure(let error):
-                                Text("Failed to load image: \(error.localizedDescription)")
-                            case .empty:
-                                Text("Waiting for an image")
-                            @unknown default:
-                                Text("Unknown state")
-                            }
-                        }
-                    }
-                    // Display Ingredients
-                    if !meal.ingredients.isEmpty {
-                        Text("Ingredients:")
-                            .font(.headline)
-                        ForEach(meal.ingredients, id: \.name) { ingredient in
-                            Text("\(ingredient.name) - \(ingredient.measurement)")
-                        }
-                    } else {
-                        Text("No ingredients available")
-                    }
-                } else {
-                    Text("Loading meal details...")
-                }
-            }
-        }
-        .onAppear {
-            fetchMealDetails()
-        }
+    @ObservedObject var mealDetailViewModel: MealDetailViewModel
+    let idMeal: String
+    
+    init(idMeal: String) {
+        self.idMeal = idMeal
+        self.mealDetailViewModel = MealDetailViewModel()
+        self.mealDetailViewModel.fetchMealDetail(for: idMeal)
     }
 
-    func fetchMealDetails() {
-        guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/lookup.php?i=\(mealID)") else {
-            return
+    var body: some View {
+        if let selectedMeal = mealDetailViewModel.selectedMeal {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(selectedMeal.strMeal)
+                        .font(.title)
+                        .padding(.bottom, 8)
+                    
+                    AsyncImage(url: URL(string: selectedMeal.strMealThumb)!) {
+                        Text("Loading Image...")
+                            .foregroundColor(.gray)
+                    }
+                    .frame(width: 200, height: 200)
+                    .cornerRadius(8)
+
+                    if !selectedMeal.strInstructions.isEmpty {
+                        Text("Instructions:")
+                            .fontWeight(.bold)
+                        Text(selectedMeal.strInstructions)
+                            .padding(.bottom, 8)
+                    }
+
+                    ForEach(1...20, id: \.self) { index in
+                        if !selectedMeal.ingredient(at: index).isEmpty && !selectedMeal.measure(at: index).isEmpty {
+                            Text("\(selectedMeal.ingredient(at: index)) - \(selectedMeal.measure(at: index))")
+                        }
+                    }
+                }
+                .padding()
+            }
+        } else {
+            Text("Loading...")
+        }
+    }
+    
+    func printDetails(_ selectedMeal: MealDetail) {
+        print("Meal ID: \(selectedMeal.idMeal)")
+        print("Meal Name: \(selectedMeal.strMeal)")
+        print("Meal Category: \(selectedMeal.strCategory)")
+        // ... print other properties
+
+        // Loop through ingredients and measures
+        for index in 1...20 {
+            let ingredient = selectedMeal.ingredient(at: index)
+            let measure = selectedMeal.measure(at: index)
+            if !ingredient.isEmpty && !measure.isEmpty {
+                print("Ingredient \(index): \(ingredient) - Measure: \(measure)")
+            }
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(MealDetailsResponse.self, from: data)
-                    if let meal = response.meals.first {
-                        mealDetails = meal
-                    } else {
-                        print("No meal details found")
-                    }
-                } catch {
-                    print("Error decoding JSON: \(error)")
-                }
-            }
-        }.resume()
+        print("Instructions: \(selectedMeal.strInstructions)")
     }
 }
 
 
-
-struct ContentView_Previews: PreviewProvider {
+struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create a default MealDetailView with mealID for preview
-        MealDetailView(mealID: "52860")
+        return MealDetailView(idMeal: "52860")
     }
 }
