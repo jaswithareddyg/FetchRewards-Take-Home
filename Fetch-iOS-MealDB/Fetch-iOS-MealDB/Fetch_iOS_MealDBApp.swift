@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct Fetch_iOS_MealDBApp: App {
-    let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
+var body: some Scene {
+    let viewModel = MealListViewModel()
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MealListView(mealListViewModel: viewModel)
         }
     }
 }

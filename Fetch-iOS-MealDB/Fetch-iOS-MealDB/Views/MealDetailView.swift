@@ -32,11 +32,8 @@ struct MealDetailView: View {
                             .padding(.bottom, 8)
                     }
 
-                    ForEach(1...20, id: \.self) { index in
-                        if !selectedMeal.ingredient(at: index).isEmpty && !selectedMeal.measure(at: index).isEmpty {
-                            Text("\(selectedMeal.ingredient(at: index)) - \(selectedMeal.measure(at: index))")
-                        }
-                    }
+                    // Display Ingredients and Measures
+                    MealDetailContent.displayIngredientsAndMeasures(for: selectedMeal)
                 }
                 .padding()
             }
@@ -45,23 +42,23 @@ struct MealDetailView: View {
         }
     }
     
-    func printDetails(_ selectedMeal: MealDetail) {
-        print("Meal ID: \(selectedMeal.idMeal)")
-        print("Meal Name: \(selectedMeal.strMeal)")
-        print("Meal Category: \(selectedMeal.strCategory)")
-        // ... print other properties
+//    func printDetails(_ selectedMeal: MealDetail) {
+//        print("Meal ID: \(selectedMeal.idMeal)")
+//        print("Meal Name: \(selectedMeal.strMeal)")
+//        // ... print other properties
+//
+//        // Loop through ingredients and measures
+//        for index in 1...20 {
+//            let ingredient = selectedMeal.ingredient(at: index)
+//            let measure = selectedMeal.measure(at: index)
+//            if !ingredient.isEmpty && !measure.isEmpty {
+//                print("Ingredient \(index): \(ingredient) - Measure: \(measure)")
+//            }
+//        }
+//
+//        print("Instructions: \(selectedMeal.strInstructions)")
+//    }
 
-        // Loop through ingredients and measures
-        for index in 1...20 {
-            let ingredient = selectedMeal.ingredient(at: index)
-            let measure = selectedMeal.measure(at: index)
-            if !ingredient.isEmpty && !measure.isEmpty {
-                print("Ingredient \(index): \(ingredient) - Measure: \(measure)")
-            }
-        }
-
-        print("Instructions: \(selectedMeal.strInstructions)")
-    }
 }
 
 
