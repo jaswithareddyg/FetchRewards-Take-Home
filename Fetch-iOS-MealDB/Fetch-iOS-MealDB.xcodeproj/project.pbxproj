@@ -11,7 +11,7 @@
 		BC01C4B92AF37A00001DCBBB /* MealDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01C4B82AF37A00001DCBBB /* MealDetailViewModel.swift */; };
 		BC01C4BB2AF37B22001DCBBB /* MealService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01C4BA2AF37B22001DCBBB /* MealService.swift */; };
 		BC01C4BD2AF37CD6001DCBBB /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01C4BC2AF37CD6001DCBBB /* AsyncImage.swift */; };
-		BC01C4C12AF39F05001DCBBB /* display.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01C4C02AF39F05001DCBBB /* display.swift */; };
+		BC01C4C12AF39F05001DCBBB /* DisplayIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01C4C02AF39F05001DCBBB /* DisplayIngredients.swift */; };
 		BC8233702AF33F770045B6F0 /* Fetch_iOS_MealDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC82336F2AF33F770045B6F0 /* Fetch_iOS_MealDBApp.swift */; };
 		BC8233742AF33F790045B6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8233732AF33F790045B6F0 /* Assets.xcassets */; };
 		BC8233772AF33F790045B6F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8233762AF33F790045B6F0 /* Preview Assets.xcassets */; };
@@ -26,7 +26,7 @@
 		BC01C4B82AF37A00001DCBBB /* MealDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewModel.swift; sourceTree = "<group>"; };
 		BC01C4BA2AF37B22001DCBBB /* MealService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealService.swift; sourceTree = "<group>"; };
 		BC01C4BC2AF37CD6001DCBBB /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
-		BC01C4C02AF39F05001DCBBB /* display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = display.swift; sourceTree = "<group>"; };
+		BC01C4C02AF39F05001DCBBB /* DisplayIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayIngredients.swift; sourceTree = "<group>"; };
 		BC82336C2AF33F770045B6F0 /* Fetch-iOS-MealDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fetch-iOS-MealDB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC82336F2AF33F770045B6F0 /* Fetch_iOS_MealDBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_iOS_MealDBApp.swift; sourceTree = "<group>"; };
 		BC8233732AF33F790045B6F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,11 +76,11 @@
 		BC82336E2AF33F770045B6F0 /* Fetch-iOS-MealDB */ = {
 			isa = PBXGroup;
 			children = (
+				BC82336F2AF33F770045B6F0 /* Fetch_iOS_MealDBApp.swift */,
 				BC8233842AF34C480045B6F0 /* Model */,
 				BC01C4B52AF3799C001DCBBB /* ViewModel */,
 				BC8233852AF34D9F0045B6F0 /* Views */,
 				BC82338C2AF350A50045B6F0 /* Components_Utilities */,
-				BC82336F2AF33F770045B6F0 /* Fetch_iOS_MealDBApp.swift */,
 				BC8233732AF33F790045B6F0 /* Assets.xcassets */,
 				BC8233752AF33F790045B6F0 /* Preview Content */,
 			);
@@ -118,7 +118,7 @@
 			children = (
 				BC01C4BC2AF37CD6001DCBBB /* AsyncImage.swift */,
 				BC82338D2AF350B50045B6F0 /* SearchBar.swift */,
-				BC01C4C02AF39F05001DCBBB /* display.swift */,
+				BC01C4C02AF39F05001DCBBB /* DisplayIngredients.swift */,
 			);
 			path = Components_Utilities;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 				BC82338E2AF350B50045B6F0 /* SearchBar.swift in Sources */,
 				BC01C4B72AF379B1001DCBBB /* MealListViewModel.swift in Sources */,
 				BC8233892AF34F400045B6F0 /* MealListView.swift in Sources */,
-				BC01C4C12AF39F05001DCBBB /* display.swift in Sources */,
+				BC01C4C12AF39F05001DCBBB /* DisplayIngredients.swift in Sources */,
 				BC01C4BB2AF37B22001DCBBB /* MealService.swift in Sources */,
 				BC01C4B92AF37A00001DCBBB /* MealDetailViewModel.swift in Sources */,
 				BC8233702AF33F770045B6F0 /* Fetch_iOS_MealDBApp.swift in Sources */,
@@ -339,11 +339,12 @@
 				DEVELOPMENT_TEAM = 79R644N9YX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "The Next Meal";
+				INFOPLIST_KEY_CFBundleDisplayName = "The Next Dessert";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,11 +373,12 @@
 				DEVELOPMENT_TEAM = 79R644N9YX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "The Next Meal";
+				INFOPLIST_KEY_CFBundleDisplayName = "The Next Dessert";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

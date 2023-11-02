@@ -1,13 +1,21 @@
 import Foundation
 import Combine
 
+// MARK: - MealService
+
 class MealService {
     enum ServiceError: Error {
         case apiError
         case invalidResponse
         case invalidData
     }
-
+    
+    // MARK: Fetch Dessert Meals
+    
+    /// Fetches dessert meals from an API and returns a publisher with the results.
+    ///
+    /// - Returns: A publisher with meal category response or an error.
+    
     static func fetchDessertMeals() -> AnyPublisher<MealCategoryResponse, Error> {
         let urlString = "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
 
@@ -27,7 +35,17 @@ class MealService {
     }
 }
 
+// MARK: - MealDetailService
+
 class MealDetailService {
+    
+    // MARK: Fetch Meal Detail
+
+    /// Fetches detailed information for a specific meal by its `idMeal` and returns a publisher with the results.
+    ///
+    /// - Parameter idMeal: The identifier of the meal to fetch.
+    /// - Returns: A publisher with meal detail response or an error.
+    
     static func fetchMealDetail(for idMeal: String) -> AnyPublisher<MealDetailResponse, Error> {
         let urlString = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=\(idMeal)"
 

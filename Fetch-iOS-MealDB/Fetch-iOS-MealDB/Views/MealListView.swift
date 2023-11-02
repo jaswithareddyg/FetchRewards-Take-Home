@@ -1,7 +1,11 @@
 import SwiftUI
 
+/// A view displaying a list of meals.
 struct MealListView: View {
+    /// The ViewModel for meal list management.
     @ObservedObject var mealListViewModel: MealListViewModel
+    
+    /// The ID of the selected meal.
     @State private var selectedMealID: String?
 
     var body: some View {
@@ -43,6 +47,7 @@ struct MealListView: View {
     }
 }
 
+/// A preview for the MealListView.
 struct MealListView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = MealListViewModel()

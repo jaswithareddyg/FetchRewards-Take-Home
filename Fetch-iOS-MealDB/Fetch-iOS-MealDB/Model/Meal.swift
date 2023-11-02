@@ -1,3 +1,15 @@
+//
+//  Meal.swift
+//
+//  Overview: Contains model structures to decode meal category and meal detail data from API responses.
+//
+//  - MealCategoryResponse: Represents the response containing a list of meal categories.
+//  - MealCategory: Represents a meal category with its details conforming to Identifiable.
+//  - MealDetailResponse: Represents the detailed information of a specific meal.
+//  - MealDetail: Represents a specific meal's details conforming to Identifiable.
+//
+
+
 import Foundation
 
 

@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A view displaying detailed information about a specific meal.
 struct MealDetailView: View {
     @ObservedObject var mealDetailViewModel: MealDetailViewModel
     let idMeal: String
@@ -14,26 +15,39 @@ struct MealDetailView: View {
         if let selectedMeal = mealDetailViewModel.selectedMeal {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
+                    // Display meal title
                     Text(selectedMeal.strMeal)
-                        .font(.title)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.leading)
                         .padding(.bottom, 8)
                     
-                    AsyncImage(url: URL(string: selectedMeal.strMealThumb)!) {
-                        Text("Loading Image...")
-                            .foregroundColor(.gray)
+                    // Display meal image centered on the page
+                    HStack {
+                        Spacer()
+                        AsyncImage(url: URL(string: selectedMeal.strMealThumb)!) {
+                            Text("Loading Image...")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(width: 200, height: 200)
+                        .cornerRadius(8)
+                        Spacer()
                     }
-                    .frame(width: 200, height: 200)
-                    .cornerRadius(8)
+                    
+                    // Display Ingredients and Measures section
+                    Text("Ingredients")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    MealDetailContent.displayIngredientsAndMeasures(for: selectedMeal)
 
+                    // Display meal instructions
                     if !selectedMeal.strInstructions.isEmpty {
                         Text("Instructions:")
-                            .fontWeight(.bold)
+                            .font(.title2)
+                            .fontWeight(.semibold)
                         Text(selectedMeal.strInstructions)
                             .padding(.bottom, 8)
                     }
-
-                    // Display Ingredients and Measures
-                    MealDetailContent.displayIngredientsAndMeasures(for: selectedMeal)
                 }
                 .padding()
             }
@@ -41,29 +55,11 @@ struct MealDetailView: View {
             Text("Loading...")
         }
     }
-    
-//    func printDetails(_ selectedMeal: MealDetail) {
-//        print("Meal ID: \(selectedMeal.idMeal)")
-//        print("Meal Name: \(selectedMeal.strMeal)")
-//        // ... print other properties
-//
-//        // Loop through ingredients and measures
-//        for index in 1...20 {
-//            let ingredient = selectedMeal.ingredient(at: index)
-//            let measure = selectedMeal.measure(at: index)
-//            if !ingredient.isEmpty && !measure.isEmpty {
-//                print("Ingredient \(index): \(ingredient) - Measure: \(measure)")
-//            }
-//        }
-//
-//        print("Instructions: \(selectedMeal.strInstructions)")
-//    }
-
 }
 
-
+/// A preview for the MealDetailView.
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        return MealDetailView(idMeal: "52860")
+        MealDetailView(idMeal: "52860")
     }
 }

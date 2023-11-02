@@ -1,8 +1,14 @@
 import SwiftUI
 
+/// A structure responsible for displaying the ingredients and measures of a meal.
 struct MealDetailContent {
+    /// A method that displays the ingredients and their respective measures for a meal.
     static func displayIngredientsAndMeasures(for meal: MealDetail) -> some View {
-        VStack {
+        // Using VStack to stack the ingredients and measures in a vertical arrangement.
+        VStack(alignment: .leading, spacing: 16) {
+            // Displaying ingredient and measure pairs up to 20.
+            // Using if conditions to check each ingredient and measure individually.
+            // Using Text views to display each pair.
             if !meal.strIngredient1.isEmpty && !meal.strMeasure1.isEmpty {
                 Text("\(meal.strIngredient1) - \(meal.strMeasure1)")
             }

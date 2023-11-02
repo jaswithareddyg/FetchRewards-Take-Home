@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A SearchBar view that includes a text field for search input and a button to clear the input text.
 struct SearchBar: View {
     @Binding var text: String
 
